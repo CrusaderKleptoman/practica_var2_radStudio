@@ -44,6 +44,18 @@ vector<TPoint> points;
 
 
 
+void __fastcall TForm5::PaintBox1MouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+		  int X, int Y)
+{
+	   /*	if (Button == mbLeft) {
+			points[N].x = X;
+			points[N].y = Y;
+			N++;
+			EditX->Text = PaintBox1->Height;
+			EditY->Text = PaintBox1->Width;
+		}*/
+}
+//---------------------------------------------------------------------------
 
 double line(TPoint point1, TPoint point2)
 {
@@ -155,25 +167,48 @@ void Draw(TPaintBox *PaintBox1) {
 	for (int i = 0; i < points.size(); i++) {
 		PaintBox1->Canvas->Ellipse(points[i].x-2.5, points[i].y-2.5, points[i].x+2.5, points[i].y+2.5);
 	}
+	/*
+	PaintBox1->Canvas->Brush->Color = clGreen;
+	for (int i = 0; i < pointsInCirc.size(); i++) {
+		PaintBox1->Canvas->Ellipse(pointsInCirc[i].x-2.5, pointsInCirc[i].y-2.5, pointsInCirc[i].x+2.5, pointsInCirc[i].y+2.5);
+	}
+
+	PaintBox1->Canvas->MoveTo(p1.x, p1.y);
+	PaintBox1->Canvas->LineTo(p2.x, p2.y);
+
+	////////////////////////////////////
+	if (p2.x - p1.x != 0 || p2.y - p1.y != 0) {
+		vector<int> pVec = {p2.x - p1.x, p2.y - p1.y};
+		vector<float> unitPVec = {pVec[0]/Hype(pVec[0], pVec[1]), pVec[1]/Hype(pVec[0], pVec[1])};
+
+		PaintBox1->Canvas->MoveTo(p1.x, p1.y);
+		PaintBox1->Canvas->LineTo(p2.x+unitPVec[0]*PaintBox1->Width*scale, p2.y+unitPVec[1]*PaintBox1->Width*scale);
+		PaintBox1->Canvas->MoveTo(p2.x, p2.y);
+		PaintBox1->Canvas->LineTo(p1.x-unitPVec[0]*PaintBox1->Width*scale, p1.y-unitPVec[1]*PaintBox1->Width*scale);
+	}
+	////////////////////////////////////
+	PaintBox1->Canvas->Brush->Color = clYellow;
+	PaintBox1->Canvas->Ellipse(p1.x-5*scale, p1.y-5*scale, p1.x+5*scale, p1.y+5*scale);
+	PaintBox1->Canvas->Ellipse(p2.x-5*scale, p2.y-5*scale, p2.x+5*scale, p2.y+5*scale);
+
+	PaintBox1->Canvas->MoveTo((0 - offsetX)*scale, (0 - offsetY)*scale);
+	PaintBox1->Canvas->LineTo((PaintBox1->Width - offsetX)*scale, (0 - offsetY)*scale);
+
+	PaintBox1->Canvas->MoveTo((PaintBox1->Width - offsetX)*scale, (0 - offsetY)*scale);
+	PaintBox1->Canvas->LineTo((PaintBox1->Width - offsetX)*scale, (PaintBox1->Height - offsetY)*scale);
+
+	PaintBox1->Canvas->MoveTo((PaintBox1->Width - offsetX)*scale, (PaintBox1->Height - offsetY)*scale);
+	PaintBox1->Canvas->LineTo((0 - offsetX)*scale, (PaintBox1->Height - offsetY)*scale);
+
+	PaintBox1->Canvas->MoveTo((0 - offsetX)*scale, (PaintBox1->Height - offsetY)*scale);
+	PaintBox1->Canvas->LineTo((0 - offsetX)*scale, (0 - offsetY)*scale);*/
 }
-
-
 
 void __fastcall TForm5::ButtonEnterCoordinateClick(TObject *Sender)
 {
 	TPoint p;
 	p.x = StrToInt(EditX->Text);
 	p.y = StrToInt(EditY->Text);
-
-    for(int i; i < points.size(); i++)
-	{
-		if(p.x == points[i].X && p.y == points[i].Y)
-		{
-			ShowMessage("ѕо данным координатам уже существует точка.");
-            return;
-		}
-	}
-
 	if((p.x >= 0 && p.x <= PaintBox1->Width) && (p.y >= 0 && p.y <= PaintBox1->Height))
 	{
 		points.push_back(p); PaintBox1->Repaint(); Draw(PaintBox1);

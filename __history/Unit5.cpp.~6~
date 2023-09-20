@@ -157,23 +157,11 @@ void Draw(TPaintBox *PaintBox1) {
 	}
 }
 
-
-
 void __fastcall TForm5::ButtonEnterCoordinateClick(TObject *Sender)
 {
 	TPoint p;
 	p.x = StrToInt(EditX->Text);
 	p.y = StrToInt(EditY->Text);
-
-    for(int i; i < points.size(); i++)
-	{
-		if(p.x == points[i].X && p.y == points[i].Y)
-		{
-			ShowMessage("ѕо данным координатам уже существует точка.");
-            return;
-		}
-	}
-
 	if((p.x >= 0 && p.x <= PaintBox1->Width) && (p.y >= 0 && p.y <= PaintBox1->Height))
 	{
 		points.push_back(p); PaintBox1->Repaint(); Draw(PaintBox1);

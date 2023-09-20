@@ -38,6 +38,8 @@ __published:	// IDE-managed Components
 	TStaticText *StaticTextSTriangle;
 	TStaticText *StaticTextSDifference;
 	TButton *ButtonTask;
+	void __fastcall PaintBox1MouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 	void __fastcall ButtonEnterCoordinateClick(TObject *Sender);
 	void __fastcall ButtonClearClick(TObject *Sender);
 	void __fastcall ButtonLogicClick(TObject *Sender);
